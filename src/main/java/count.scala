@@ -28,7 +28,7 @@ class count(db_file:String, delimiter:String, kmer_length:Int) {
 
 
 
-  def generate_kmers (): ListBuffer[List[(String, Int)]] = {
+  def generate_kmers (): List[List[(String, Int)]] = {
 
     for (seq <- sequences_as_list) {
       val count = seq.sliding(kmer_length).toSeq.groupBy(identity).mapValues(_.size).toMap
@@ -41,7 +41,9 @@ class count(db_file:String, delimiter:String, kmer_length:Int) {
 
       kmer_list ++= List(counted_kmers_by_sequence)
 
+
     }
+    return kmer_list.toList
   }
 
 

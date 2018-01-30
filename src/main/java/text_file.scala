@@ -7,12 +7,16 @@ class text_file (db_file:String, delimiter:String, kmer_length:Int, file_locatio
 
   val counting = new count(db_file, delimiter, kmer_length)
   val kmers = counting.generate_kmers()
+  val extracted_kmer_values = kmers.map(x=> x.map(y=>y._2))
+  val column_names = counting.kmers
+  val kmers_for_txt = column_names :: extracted_kmer_values
 
   def writing (): Unit = {
     val txt_name = kmer_length.toString + ".txt"
     val txt = file_location.concat(txt_name)
     val fw = new FileWriter(txt, true)
-    kmers.foreach(x => x.map(y=> fw.write(y._1.mkString(",") + "\n")))
+    kmers_for_txt.foreach(x => fw.write(x.mkString(",") + "\n"))
+    fw.close()
   }
 
 }

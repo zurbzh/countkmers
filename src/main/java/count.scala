@@ -6,7 +6,7 @@
 import scala.collection.mutable.{ArrayBuffer, ListBuffer}
 
 
-class analyser (db_file:String, delimiter:String) {
+class count(db_file:String, delimiter:String, kmer_length:Int) {
 
 
   val df = db_creation.receive(db_file, delimiter)
@@ -16,7 +16,6 @@ class analyser (db_file:String, delimiter:String) {
   val sequences_as_list =  sequence.rdd.map(r => r.getString(0)).collect()
 
 
-  val kmer_length = 3
   val letters = "ACGT"
   def comb(s:String)=(s * s.length).combinations(kmer_length)
   val kmers = comb(letters).flatMap(_.toString.permutations.toList).toList
@@ -29,7 +28,7 @@ class analyser (db_file:String, delimiter:String) {
 
 
 
-  def generate_kmers () {
+  def generate_kmers (): ListBuffer[List[(String, Int)]] = {
 
     for (seq <- sequences_as_list) {
       val count = seq.sliding(kmer_length).toSeq.groupBy(identity).mapValues(_.size).toMap

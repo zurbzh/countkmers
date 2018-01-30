@@ -14,7 +14,7 @@ object db_creation {
     .setMaster("local[2]")
   val sc = new SparkContext(sparkConf)
   val sqlContext = new org.apache.spark.sql.SQLContext(sc)
-  import sqlContext.implicits._
+
 
 
   def receive (file_name:String, delimiter:String):DataFrame = {

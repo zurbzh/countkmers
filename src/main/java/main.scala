@@ -10,8 +10,8 @@ object main {
     val delimiter = ","
     val kmer_length = 3
     val folder = "/Users/zurbzh/Desktop/CNN_data/"
-    val sm = new text_file(db, delimiter, kmer_length, folder)
-    sm.writing()
+    val txt = new text_file(db, delimiter, kmer_length, folder)
+    txt.writing()
   }
 
 }

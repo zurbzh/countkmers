@@ -27,7 +27,6 @@ class count(db_file:String, delimiter:String, kmer_length:Int) {
 
 
 
-
   def generate_kmers (): List[List[(String, Int)]] = {
 
     for (seq <- sequences_as_list) {

@@ -120,7 +120,7 @@
                         <index>true</index>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <!--mainClass>HadoopBAMExample</mainClass-->
+                            <mainClass>main</mainClass>
                         </manifest>
                     </archive>
                     <attach>false</attach>

@@ -10,8 +10,8 @@ object db_creation {
 
 
   val sparkConf = new SparkConf()
-    .setAppName("ClusterScore")
-    .setMaster("local[2]")
+    .setAppName("Kmers")
+    .setMaster("local[*]")
   val sc = new SparkContext(sparkConf)
   val sqlContext = new org.apache.spark.sql.SQLContext(sc)
 

@@ -16,7 +16,7 @@ class count(db_file:String, delimiter:String, kmer_length:Int) {
   val sequences_as_list =  sequence.rdd.map(r => r.getString(0)).collect()
 
 
-  val letters = "ACGT"
+  val letters = "ACGTACGT"
   def comb(s:String)=(s * s.length).combinations(kmer_length)
   val kmers = comb(letters).flatMap(_.toString.permutations.toList).toList
 

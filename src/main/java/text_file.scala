@@ -3,7 +3,7 @@ import java.io.FileWriter
 /**
   * Created by zurbzh on 2018-01-30.
   */
-class text_file (db_file:String, delimiter:String, kmer_length:Int, folder:String) {
+class text_file (db_file:String, delimiter:String, kmer_length:Int) {
 
   val counting = new count(db_file, delimiter, kmer_length)
   val kmers = counting.generate_kmers()
@@ -11,7 +11,7 @@ class text_file (db_file:String, delimiter:String, kmer_length:Int, folder:Strin
   val column_names = counting.kmers
   val kmers_for_txt = column_names :: extracted_kmer_values
 
-  def writing (): Unit = {
+  def writing (folder:String): Unit = {
     val txt_name = kmer_length.toString + "mer" + ".csv"
     val txt = folder.concat(txt_name)
     val fw = new FileWriter(txt, true)
